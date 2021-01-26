@@ -8,33 +8,38 @@ function Square(props) {
   }
 
 export default class Board extends React.Component {
-    constructor(props){
-      super(props);
-      this.state={
-        squares: Array(9).fill(null),
-        xNext: true,
-      };
+
+ 
+  handleClick(i){
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const squares=current.squares.slice();
+    if(this.calculateWinner(squares)||squares[i]){
+        return;
     }
-    handleClick(i){
-      const squares=this.state.squares.slice();
-      squares[i]=this.state.xNext ? 'X': 'O';
-      this.setState({squares:squares,
-        xNext: !this.state.xNext,
-      });
-    }
+    squares[i]=this.state.xNext ? 'X': 'O';
+    this.setState({
+      history: history.concat([{
+        squares: squares,
+      }]),
+      xNext: !this.state.xNext,
+    });
+  }
+     
     renderSquare(i) {
       return <Square
-       value={this.state.squares[i]}
-       onClick={()=>this.handleClick(i)}
+       value={this.props.squares[i]}
+       onClick={()=>this.props.onClick(i)}
        />;
     }
+    
+    
   
     render() {
-      const status = 'Next player: '+(this.state.xNext ? 'X': 'O');
-  
+      
+      
       return (
-        <div>
-          <div className="status">{status}</div>
+        <div className="board">
           <div className="board-row">
             {this.renderSquare(0)}
             {this.renderSquare(1)}
@@ -53,4 +58,7 @@ export default class Board extends React.Component {
         </div>
       );
     }
+    
+    
+    
   }
