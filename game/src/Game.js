@@ -11,6 +11,7 @@ export default class Game extends React.Component {
       xIsNext: true,
     };
   }
+  
   handleClick(i){
     const history = this.state.history;
     const current = history[history.length - 1];
@@ -25,6 +26,14 @@ export default class Game extends React.Component {
       }]),
       xNext: !this.state.xNext,
     });
+  }
+  handleRestartClick(i){
+    this.setState({
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      xIsNext: true,
+    })
   }
   calculateWinner(squares) {
     const lines = [
@@ -78,7 +87,7 @@ export default class Game extends React.Component {
           </div>
           <div className="game-info">
             <div>{status}</div>
-            <ol>{/* TODO */}</ol>
+            <button className="restart" onClick={this.handleRestartClick}>Restart</button>
           </div>
         </div>
         

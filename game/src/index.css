@@ -4,18 +4,24 @@ body {
     justify-content: center;
     text-align: center;
     margin: 0;
-    color: white;
+    color: #fff;
     
   }
   .board{
-
+    background: #000 ;
+    opacity: 0.6;
+    z-index: 0;
+    position: relative;
   }
+  .no-cursor, .no-cursor * { cursor: none; } 
   .background{
    width: 100vw;
+   height: 100vh;
     background : url(./img/back.jpg) no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
+    align-items: center;
   
   }
   ol, ul {
@@ -47,6 +53,8 @@ body {
     margin-top: -1px;
     padding: 0;
     text-align: center;
+    z-index: 3;
+    position: relative;
    
   }
   
@@ -65,5 +73,9 @@ body {
   
   .game-info {
     margin-left: 20px;
+    text-shadow: 1px 0 1px #000, 
+    0 1px 1px #000, 
+    -1px 0 1px #000, 
+    0 -1px 1px #000;
   }
   
